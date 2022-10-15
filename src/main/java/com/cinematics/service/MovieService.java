@@ -3,6 +3,7 @@ package com.cinematics.service;
 import com.cinematics.dao.MovieDao;
 import com.cinematics.exception.MovieException;
 import com.cinematics.model.movie.Movie;
+import com.cinematics.validation.movieexist.MovieExist;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ public class MovieService
 
   public void createMovie(String name, String director)
   {
-    assertMovieDoesNotExist(name);
+    //assertMovieDoesNotExist(name);
 
     int result = movieDao.createMovie(name, director);
 

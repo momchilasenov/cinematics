@@ -4,10 +4,12 @@ import com.cinematics.model.movie.Movie;
 import com.cinematics.service.MovieService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@Validated
 public class MovieController
 {
   public final static String API_MOVIE = "/api/be/movie";
