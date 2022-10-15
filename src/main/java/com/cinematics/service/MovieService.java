@@ -2,6 +2,7 @@ package com.cinematics.service;
 
 import com.cinematics.dao.MovieDao;
 import com.cinematics.exception.MovieException;
+import com.cinematics.model.movie.Movie;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -22,5 +23,10 @@ public class MovieService
     }
 
     log.info("Created {} movie: {} by {}", result, name, director);
+  }
+
+  public Movie getMovie(String name)
+  {
+    return movieDao.getMovie(name);
   }
 }

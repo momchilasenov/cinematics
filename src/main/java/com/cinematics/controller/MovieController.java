@@ -1,12 +1,10 @@
 package com.cinematics.controller;
 
+import com.cinematics.model.movie.Movie;
 import com.cinematics.service.MovieService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -22,5 +20,12 @@ public class MovieController
                           @RequestParam String director)
   {
     movieService.createMovie(name, director);
+  }
+
+  @GetMapping(API_MOVIE)
+  @ResponseStatus(HttpStatus.OK)
+  public Movie getMovie(@RequestParam String name)
+  {
+    return movieService.getMovie(name);
   }
 }
