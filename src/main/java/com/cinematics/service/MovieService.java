@@ -16,13 +16,19 @@ public class MovieService
 
   public void createMovie(String name, String director)
   {
+    assertMovieDoesNotExist(name);
+
     int result = movieDao.createMovie(name, director);
 
-    if (result == 0) {
-      throw new MovieException("Error creating movie: " + name);
-    }
-
     log.info("Created {} movie: {} by {}", result, name, director);
+  }
+
+  private void assertMovieDoesNotExist(String name)
+  {
+    Movie movie = getMovie(name);
+    if (null != movie) {
+      throw new MovieException("Movie " + name + " already exists");
+    }
   }
 
   public Movie getMovie(String name)
