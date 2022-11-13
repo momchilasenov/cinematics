@@ -21,7 +21,7 @@ public class MovieService
   public void createMovie(String name, String director)
   {
     assertMovieDoesNotExist(name);
-    log.info("calling movieDao.createMovie()");
+    log.info("calling movieDao CREATE");
     int result = movieDao.createMovie(name, director);
     log.info("Created {} movie: {} by {}", result, name, director);
   }
@@ -29,21 +29,21 @@ public class MovieService
   @CachePut(cacheNames = "movies", key = "#oldMovie")
   public int updateMovie(String oldMovie, Movie newMovie)
   {
-    log.info("calling movieDao.updateMovie()");
+    log.info("calling movieDao UPDATE");
     return movieDao.updateMovie(oldMovie, newMovie);
   }
 
   @Cacheable(cacheNames = "movies", key = "#name")
   public Movie getMovie(String name)
   {
-    log.info("calling movieDao.getMovie()");
+    log.info("calling movieDao GET");
     return movieDao.getMovie(name);
   }
 
   @CacheEvict(cacheNames = "movies", key = "#movie")
   public int deleteMovie(String movie)
   {
-    log.info("calling movieDao.deleteMovie()");
+    log.info("calling movieDao DELETE");
     return movieDao.deleteMovie(movie);
   }
 
