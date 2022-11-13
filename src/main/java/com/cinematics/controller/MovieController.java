@@ -31,13 +31,14 @@ public class MovieController
     return movieService.getMovie(name);
   }
 
-    @PutMapping(API_MOVIE)
-    @ResponseStatus(HttpStatus.OK)
-    public String updateMovie(@RequestParam String oldMovie, @RequestBody Movie newMovie) {
-      int result = movieService.updateMovie(oldMovie, newMovie);
-      if(result<1){
-          return "Error, movie not updated";
-      }
-      return "Movie updated";
+  @PutMapping(API_MOVIE)
+  @ResponseStatus(HttpStatus.OK)
+  public String updateMovie(@RequestParam String oldMovie, @RequestBody Movie newMovie)
+  {
+    int result = movieService.updateMovie(oldMovie, newMovie);
+    if (result < 1) {
+      return "Error, movie not updated";
     }
+    return "Movie updated";
+  }
 }

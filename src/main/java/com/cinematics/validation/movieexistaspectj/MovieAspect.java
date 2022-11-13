@@ -5,8 +5,6 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 
-import java.util.Arrays;
-
 @Aspect
 public class MovieAspect
 {
@@ -15,7 +13,7 @@ public class MovieAspect
   {
     Object[] args = joinPoint.getArgs();
     if (args[0].equals("Titanic")) {
-      System.out.println("YEAAAAAHHHHHH");
+      System.out.println("In Movie aspect");
     }
   }
 

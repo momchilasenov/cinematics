@@ -29,7 +29,7 @@ public class MovieService
     return movieDao.updateMovie(oldMovie, newMovie);
   }
 
-  @Cacheable(cacheNames = "movies", key="#name")
+  @Cacheable(cacheNames = "movies", key = "#name")
   public Movie getMovie(String name)
   {
     return movieDao.getMovie(name);

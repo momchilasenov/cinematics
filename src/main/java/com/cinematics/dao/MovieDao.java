@@ -3,13 +3,10 @@ package com.cinematics.dao;
 import com.cinematics.model.movie.Movie;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
-
-import java.util.Map;
 
 @Repository
 @Log4j2
@@ -41,15 +38,15 @@ public class MovieDao
   public int updateMovie(String oldMovie, Movie newMovie)
   {
     String sql = ""
-            + " UPDATE movie             "
-            + " SET name = :name         "
-            + " SET director = :director "
-            + " WHERE name = :oldMovie   ";
+        + " UPDATE movie             "
+        + " SET name = :name         "
+        + " SET director = :director "
+        + " WHERE name = :oldMovie   ";
 
     MapSqlParameterSource param = new MapSqlParameterSource()
-            .addValue("name", newMovie.getName())
-            .addValue("director", newMovie.getDirector())
-            .addValue("oldMovie", oldMovie);
+        .addValue("name", newMovie.getName())
+        .addValue("director", newMovie.getDirector())
+        .addValue("oldMovie", oldMovie);
 
     return namedTemplate.update(sql, param);
   }
