@@ -5,6 +5,7 @@ import com.cinematics.exception.MovieException;
 import com.cinematics.model.movie.Movie;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -17,13 +18,14 @@ public class MovieService
 
   public void createMovie(String name, String director)
   {
-    //assertMovieDoesNotExist(name);
+    assertMovieDoesNotExist(name);
 
     int result = movieDao.createMovie(name, director);
 
     log.info("Created {} movie: {} by {}", result, name, director);
   }
 
+  @CachePut(cacheNames = "movies", key = "#oldMovie")
   public int updateMovie(String oldMovie, Movie newMovie)
   {
     return movieDao.updateMovie(oldMovie, newMovie);
@@ -33,6 +35,11 @@ public class MovieService
   public Movie getMovie(String name)
   {
     return movieDao.getMovie(name);
+  }
+
+  public int deleteMovie(String movie)
+  {
+    return movieDao.deleteMovie(movie);
   }
 
   private void assertMovieDoesNotExist(String name)

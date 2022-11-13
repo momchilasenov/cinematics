@@ -41,4 +41,15 @@ public class MovieController
     }
     return "Movie updated";
   }
+
+  @DeleteMapping(API_MOVIE)
+  @ResponseStatus(HttpStatus.OK)
+  public String deleteMovie(@RequestParam String movie)
+  {
+    int result = movieService.deleteMovie(movie);
+    if (result < 1) {
+      return "Error, movie not deleted";
+    }
+    return "Movie deleted";
+  }
 }

@@ -75,4 +75,15 @@ public class MovieDao
       return null;
     }
   }
+
+  public int deleteMovie(String movie)
+  {
+    String sql = ""
+        + " DELETE FROM movie "
+        + " WHERE name = :movie ";
+
+    MapSqlParameterSource param = new MapSqlParameterSource("movie", movie);
+
+    return namedTemplate.update(sql, param);
+  }
 }
