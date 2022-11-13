@@ -3,7 +3,7 @@ package com.cinematics.dao;
 import com.cinematics.model.movie.Movie;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -39,8 +39,8 @@ public class MovieDao
   {
     String sql = ""
         + " UPDATE movie             "
-        + " SET name = :name         "
-        + " SET director = :director "
+        + " SET name = :name,        "
+        + " director = :director     "
         + " WHERE name = :oldMovie   ";
 
     MapSqlParameterSource param = new MapSqlParameterSource()
@@ -69,7 +69,7 @@ public class MovieDao
               .build()
       );
     }
-    catch (EmptyResultDataAccessException e) {
+    catch (IncorrectResultSizeDataAccessException e) {
       log.debug(e.getCause());
       e.getStackTrace();
       return null;
